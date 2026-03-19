@@ -7,27 +7,3 @@
 <priority>1.0</priority>
 </url>
 </urlset>
-```
-
-**Key change:** `daily` → `hourly` — tells Google your site updates every hour (live scores), so it crawls more frequently = better ranking during IPL season.
-
----
-
-## 🤖 robots.txt — Replace Completely
-
-Go to **GitHub → tightscene repo → click `robots.txt` → ✏️ Edit → delete all → paste this:**
-```
-User-agent: *
-Allow: /
-Allow: /index.html
-
-Disallow: /products/
-Disallow: /collections/
-Disallow: /cart/
-Disallow: /account/
-Disallow: /checkout/
-Disallow: /password
-
-Crawl-delay: 10
-
-Sitemap: https://tightscene.in/sitemap.xml
