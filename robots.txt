@@ -1,4 +1,14 @@
 User-agent: *
 Allow: /
+Allow: /index.html
+
+Disallow: /products/
+Disallow: /collections/
+Disallow: /cart/
+Disallow: /account/
+Disallow: /checkout/
+Disallow: /password
+
+Crawl-delay: 10
 
 Sitemap: https://tightscene.in/sitemap.xml
