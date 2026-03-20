@@ -5,24 +5,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- SEO META TAGS -->
-<title>TightScene.in – IPL 2026 Live Scores, Schedule & Match Predictions | Where Every Ball Counts</title>
-<meta name="description" content="IPL 2026 live scores, full schedule, points table, match predictions & previews. Countdown to RCB vs SRH opener on March 28. TATA IPL 2026 – 84 matches, 10 teams.">
-<meta name="keywords" content="IPL 2026, IPL 2026 live score, IPL 2026 schedule, IPL 2026 points table, IPL 2026 predictions, IPL match preview, TATA IPL 2026, RCB vs SRH, IPL 2026 teams, tightscene, IPL best XI">
+<title>TightScene.in – IPL 2026 Live Scores, Schedule & Fantasy Tips | Where Every Ball Counts</title>
+<meta name="description" content="IPL 2026 live scores, full schedule, points table, fantasy tips & match previews. Countdown to RCB vs SRH opener on March 28. TATA IPL 2026 – 84 matches, 10 teams.">
+<meta name="keywords" content="IPL 2026, IPL 2026 live score, IPL 2026 schedule, IPL 2026 points table, Dream11 tips today, IPL fantasy tips 2026, TATA IPL 2026, RCB vs SRH, IPL 2026 teams, tightscene">
 <meta name="author" content="TightScene.in">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://www.tightscene.in/">
 
 <!-- Open Graph -->
-<meta property="og:title" content="TightScene.in – IPL 2026 Live Scores & Match Predictions">
-<meta property="og:description" content="India's most dramatic IPL cricket hub. Live scores, schedule, match predictions, best XI picks, points table — where every ball counts.">
+<meta property="og:title" content="TightScene.in – IPL 2026 Live Scores & Fantasy Tips">
+<meta property="og:description" content="India's most dramatic IPL cricket hub. Live scores, schedule, Dream11 tips, points table — where every ball counts.">
 <meta property="og:url" content="https://www.tightscene.in">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://www.tightscene.in/og-image.jpg">
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="TightScene.in – IPL 2026 Live Scores & Predictions">
-<meta name="twitter:description" content="IPL 2026 schedule, match predictions, best XI picks, live scores. Where every ball counts.">
+<meta name="twitter:title" content="TightScene.in – IPL 2026 Live Scores">
+<meta name="twitter:description" content="IPL 2026 schedule, fantasy tips, live scores. Where every ball counts.">
 
 <!-- Schema.org JSON-LD -->
 <script type="application/ld+json">
@@ -31,7 +31,7 @@
   "@type": "SportsOrganization",
   "name": "TightScene",
   "url": "https://www.tightscene.in",
-  "description": "IPL 2026 live cricket scores, schedule, match predictions and previews",
+  "description": "IPL 2026 live cricket scores, schedule, fantasy tips and match previews",
   "sport": "Cricket"
 }
 </script>
@@ -807,6 +807,402 @@ footer {
 .stat-card:nth-child(3) { animation-delay: 0.15s; }
 .stat-card:nth-child(4) { animation-delay: 0.20s; }
 
+/* ===== LIVE SCORE WIDGET ===== */
+.live-score-section {
+  padding: 1.25rem 0 0.5rem;
+}
+
+.live-score-banner {
+  background: var(--bg2);
+  border: 1px solid var(--border2);
+  border-radius: 18px;
+  overflow: hidden;
+  position: relative;
+}
+
+.live-score-banner::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--red), var(--gold), var(--teal), var(--blue));
+  background-size: 200% 100%;
+  animation: shimmer-line 3s linear infinite;
+}
+
+@keyframes shimmer-line {
+  0% { background-position: 0% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.live-score-inner {
+  padding: 1rem 1.5rem;
+  display: flex; align-items: center; gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.ls-status-pill {
+  display: flex; align-items: center; gap: 6px;
+  font-family: var(--font-mono); font-size: 0.68rem;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.ls-status-pill.live { color: var(--red); }
+.ls-status-pill.preseason { color: var(--muted2); }
+.ls-status-pill.upcoming { color: var(--gold); }
+
+.ls-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  animation: pulse-anim 1.2s ease-in-out infinite;
+}
+.live .ls-dot { background: var(--red); }
+.preseason .ls-dot { background: var(--muted); animation: none; }
+.upcoming .ls-dot { background: var(--gold); }
+
+.ls-divider { width: 1px; height: 32px; background: var(--border); flex-shrink: 0; }
+
+.ls-match-wrap {
+  flex: 1; display: flex; align-items: center; gap: 1.25rem;
+  min-width: 0;
+}
+
+.ls-team {
+  display: flex; flex-direction: column; align-items: center; gap: 3px;
+  min-width: 52px;
+}
+
+.ls-team-abbr {
+  font-family: var(--font-display);
+  font-size: 1.4rem; font-weight: 700; letter-spacing: 1px; line-height: 1;
+}
+
+.ls-team-score {
+  font-family: var(--font-mono); font-size: 0.78rem; font-weight: 600;
+  color: var(--text);
+}
+
+.ls-team-overs {
+  font-family: var(--font-mono); font-size: 0.6rem; color: var(--muted);
+}
+
+.ls-vs {
+  font-family: var(--font-display); font-size: 1rem;
+  color: var(--muted); letter-spacing: 2px;
+  padding: 0 0.25rem;
+}
+
+.ls-info {
+  flex: 1; min-width: 0;
+}
+
+.ls-match-name {
+  font-family: var(--font-display); font-size: 0.85rem;
+  letter-spacing: 1px; color: var(--text);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+
+.ls-match-detail {
+  font-family: var(--font-mono); font-size: 0.65rem;
+  color: var(--muted); margin-top: 3px;
+}
+
+.ls-cta {
+  display: flex; align-items: center; gap: 8px; flex-shrink: 0;
+}
+
+.ls-retry-btn {
+  background: none; border: 1px solid var(--border2);
+  border-radius: 8px; padding: 5px 12px;
+  font-family: var(--font-mono); font-size: 0.65rem;
+  color: var(--muted2); cursor: pointer; transition: all 0.2s;
+  display: flex; align-items: center; gap: 5px;
+}
+
+.ls-retry-btn:hover { border-color: var(--gold); color: var(--gold); }
+.ls-retry-btn.spinning svg { animation: spin 1s linear infinite; }
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.ls-next-chip {
+  background: rgba(232,160,32,0.1); border: 1px solid rgba(232,160,32,0.25);
+  border-radius: 8px; padding: 5px 12px;
+  font-family: var(--font-mono); font-size: 0.65rem; color: var(--gold);
+}
+
+.ls-error-bar {
+  display: none;
+  padding: 0.5rem 1.5rem;
+  background: rgba(214,62,74,0.06);
+  border-top: 1px solid rgba(214,62,74,0.15);
+  font-family: var(--font-mono); font-size: 0.65rem; color: var(--muted);
+  align-items: center; justify-content: space-between; gap: 1rem;
+}
+
+.ls-error-bar.visible { display: flex; }
+.ls-error-text { color: rgba(214,62,74,0.8); }
+.ls-retry-count { color: var(--muted); }
+
+/* ===== PREDICTIONS SECTION ===== */
+.predictions-section { margin-top: 2.5rem; }
+
+.tight-factor-card {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: 16px; overflow: hidden; margin-bottom: 1rem;
+  transition: border-color 0.25s;
+}
+
+.tight-factor-card:hover { border-color: var(--border2); }
+
+.tf-header {
+  padding: 1rem 1.2rem;
+  background: linear-gradient(135deg, rgba(214,62,74,0.08), rgba(232,160,32,0.06));
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+}
+
+.tf-match-label {
+  font-family: var(--font-display); font-size: 1rem;
+  letter-spacing: 1.5px; text-transform: uppercase;
+}
+
+.tf-date-badge {
+  font-family: var(--font-mono); font-size: 0.65rem; color: var(--muted2);
+  background: var(--bg3); border: 1px solid var(--border);
+  padding: 3px 9px; border-radius: 5px;
+}
+
+.tf-body { padding: 1rem 1.2rem; }
+
+.tf-meter-wrap { margin-bottom: 1rem; }
+
+.tf-meter-label {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.tf-label-text {
+  font-family: var(--font-mono); font-size: 0.62rem;
+  text-transform: uppercase; letter-spacing: 1.5px; color: var(--muted);
+}
+
+.tf-score-num {
+  font-family: var(--font-display); font-size: 1.4rem;
+  font-weight: 700; letter-spacing: 1px;
+}
+
+.tf-track {
+  height: 6px; background: rgba(255,255,255,0.06);
+  border-radius: 3px; overflow: hidden;
+}
+
+.tf-fill {
+  height: 100%; border-radius: 3px;
+  transition: width 1.2s cubic-bezier(0.16,1,0.3,1);
+}
+
+.tf-fill-hi { background: linear-gradient(90deg, var(--red), var(--gold)); }
+.tf-fill-mid { background: linear-gradient(90deg, var(--gold), var(--teal)); }
+.tf-fill-lo { background: linear-gradient(90deg, var(--teal), var(--blue)); }
+
+.tf-stats-row {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 0.6rem; margin-bottom: 1rem;
+}
+
+.tf-stat {
+  background: var(--bg3); border: 1px solid var(--border);
+  border-radius: 10px; padding: 0.65rem 0.75rem; text-align: center;
+}
+
+.tf-stat-val {
+  font-family: var(--font-display); font-size: 1rem; letter-spacing: 1px;
+}
+
+.tf-stat-lbl {
+  font-family: var(--font-mono); font-size: 0.58rem;
+  text-transform: uppercase; letter-spacing: 1px;
+  color: var(--muted); margin-top: 2px;
+}
+
+.tf-battles { margin-bottom: 1rem; }
+
+.tf-battles-title {
+  font-family: var(--font-mono); font-size: 0.62rem;
+  text-transform: uppercase; letter-spacing: 1.5px;
+  color: var(--muted); margin-bottom: 8px;
+}
+
+.tf-battle-row {
+  display: flex; align-items: center; gap: 8px;
+  padding: 0.5rem 0; border-bottom: 1px solid var(--border);
+  font-size: 0.8rem;
+}
+
+.tf-battle-row:last-child { border-bottom: none; }
+
+.tf-bat { font-family: var(--font-display); font-size: 0.78rem; letter-spacing: 0.5px; }
+.tf-vs-mini { font-family: var(--font-mono); font-size: 0.6rem; color: var(--muted); padding: 0 4px; }
+.tf-battle-meta { font-family: var(--font-mono); font-size: 0.62rem; color: var(--muted); margin-left: auto; }
+
+.tf-prediction-bar {
+  display: flex; border-radius: 8px; overflow: hidden; height: 28px; margin-bottom: 0.5rem;
+}
+
+.tf-pred-team {
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 1px;
+  transition: width 1s ease;
+}
+
+.tf-pred-label {
+  display: flex; justify-content: space-between;
+  font-family: var(--font-mono); font-size: 0.62rem; color: var(--muted);
+}
+
+.tf-vote-wrap { margin-top: 0.75rem; }
+
+.tf-vote-title {
+  font-family: var(--font-mono); font-size: 0.62rem;
+  text-transform: uppercase; letter-spacing: 1.5px; color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.tf-vote-btns { display: flex; gap: 6px; }
+
+.tf-vote-btn {
+  flex: 1; background: var(--bg3); border: 1px solid var(--border);
+  border-radius: 8px; padding: 7px;
+  font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 1px;
+  color: var(--muted2); cursor: pointer; transition: all 0.2s;
+  text-align: center;
+}
+
+.tf-vote-btn:hover { border-color: var(--border2); color: var(--text); }
+.tf-vote-btn.voted { color: var(--text); }
+.tf-vote-btn.voted-a { border-color: var(--red); background: rgba(214,62,74,0.1); color: var(--red); }
+.tf-vote-btn.voted-b { border-color: var(--blue); background: rgba(74,158,255,0.1); color: var(--blue); }
+
+.tf-vote-result {
+  display: none; margin-top: 8px;
+  font-family: var(--font-mono); font-size: 0.65rem; color: var(--muted);
+  text-align: center;
+}
+.tf-vote-result.visible { display: block; }
+
+/* ===== MODAL SYSTEM (About, Privacy, Contact) ===== */
+.modal-overlay {
+  display: none; position: fixed; inset: 0; z-index: 500;
+  background: rgba(0,0,0,0.75); backdrop-filter: blur(8px);
+  align-items: flex-start; justify-content: center;
+  padding: 2rem 1rem; overflow-y: auto;
+}
+
+.modal-overlay.open { display: flex; }
+
+.modal-box {
+  background: var(--bg2); border: 1px solid var(--border2);
+  border-radius: 20px; width: 100%; max-width: 620px;
+  position: relative; overflow: hidden;
+  animation: modalIn 0.25s cubic-bezier(0.16,1,0.3,1) both;
+}
+
+@keyframes modalIn {
+  from { opacity: 0; transform: translateY(20px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.modal-box::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--gold), var(--red), var(--teal));
+}
+
+.modal-header {
+  padding: 1.25rem 1.5rem 1rem;
+  display: flex; align-items: center; justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+}
+
+.modal-title {
+  font-family: var(--font-display); font-size: 1.2rem;
+  letter-spacing: 2px; text-transform: uppercase;
+}
+
+.modal-close {
+  background: var(--bg3); border: 1px solid var(--border);
+  border-radius: 8px; width: 32px; height: 32px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; color: var(--muted2); font-size: 1rem;
+  transition: all 0.2s; flex-shrink: 0;
+}
+.modal-close:hover { border-color: var(--border2); color: var(--text); }
+
+.modal-body { padding: 1.5rem; }
+
+.modal-body p {
+  font-size: 0.88rem; color: var(--muted2); line-height: 1.7; margin-bottom: 1rem;
+}
+
+.modal-body h3 {
+  font-family: var(--font-display); font-size: 0.9rem;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--muted2); margin: 1.25rem 0 0.5rem;
+}
+
+.modal-body ul {
+  list-style: none; padding: 0; margin-bottom: 1rem;
+}
+
+.modal-body ul li {
+  font-size: 0.85rem; color: var(--muted2); padding: 4px 0;
+  border-bottom: 1px solid var(--border); display: flex; gap: 8px;
+}
+
+.modal-body ul li::before { content: '—'; color: var(--muted); flex-shrink: 0; }
+
+/* Contact form */
+.contact-form { display: flex; flex-direction: column; gap: 12px; }
+
+.cf-field { display: flex; flex-direction: column; gap: 5px; }
+
+.cf-label {
+  font-family: var(--font-mono); font-size: 0.62rem;
+  text-transform: uppercase; letter-spacing: 1.5px; color: var(--muted);
+}
+
+.cf-input, .cf-textarea {
+  background: var(--bg3); border: 1px solid var(--border);
+  border-radius: 8px; padding: 10px 12px;
+  font-family: var(--font-body); font-size: 0.85rem;
+  color: var(--text); outline: none; transition: border-color 0.2s;
+  width: 100%;
+}
+.cf-input:focus, .cf-textarea:focus { border-color: var(--gold); }
+.cf-textarea { resize: vertical; min-height: 100px; }
+
+.cf-submit {
+  background: linear-gradient(135deg, var(--gold), var(--red));
+  border: none; border-radius: 10px; padding: 11px;
+  font-family: var(--font-display); font-size: 0.85rem;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  color: #000; font-weight: 700; cursor: pointer;
+  transition: opacity 0.2s, transform 0.1s;
+}
+.cf-submit:hover { opacity: 0.9; }
+.cf-submit:active { transform: scale(0.98); }
+
+.cf-success {
+  display: none; text-align: center; padding: 1rem;
+  font-family: var(--font-mono); font-size: 0.78rem; color: var(--teal);
+}
+.cf-success.visible { display: block; }
+
+/* disclaimer tag */
+.disclaimer-box {
+  background: rgba(232,160,32,0.06); border: 1px solid rgba(232,160,32,0.2);
+  border-radius: 10px; padding: 0.75rem 1rem; margin-bottom: 1rem;
+  font-family: var(--font-mono); font-size: 0.65rem; color: var(--gold);
+  line-height: 1.6;
+}
+
 /* ===== UTILITY ===== */
 .source-note {
   font-family: var(--font-mono); font-size: 0.65rem; color: var(--muted);
@@ -845,259 +1241,6 @@ footer {
   .cd-unit { min-width: 48px; }
 }
 
-/* ===== LIVE SCORE SECTION ===== */
-.live-section {
-  padding: 0 0 0.5rem;
-  position: relative; z-index: 1;
-}
-
-.live-outer {
-  max-width: 1380px; margin: 0 auto; padding: 0 1.5rem;
-}
-
-/* Admin bar */
-.admin-bar {
-  background: var(--bg2); border: 1px solid var(--border);
-  border-radius: 14px; padding: 0.9rem 1.2rem;
-  display: flex; align-items: center; gap: 12px;
-  margin-bottom: 1rem; flex-wrap: wrap;
-}
-
-.admin-bar-title {
-  font-family: var(--font-display); font-size: 0.85rem;
-  letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted2);
-  flex-shrink: 0;
-}
-
-.match-id-input {
-  flex: 1; min-width: 160px; max-width: 240px;
-  background: var(--bg3); border: 1px solid var(--border2);
-  border-radius: 7px; padding: 7px 12px;
-  font-family: var(--font-mono); font-size: 0.82rem;
-  color: var(--text); outline: none;
-  transition: border-color 0.2s;
-}
-
-.match-id-input:focus { border-color: var(--gold); }
-.match-id-input::placeholder { color: var(--muted); }
-
-.api-url-input {
-  flex: 2; min-width: 220px;
-  background: var(--bg3); border: 1px solid var(--border2);
-  border-radius: 7px; padding: 7px 12px;
-  font-family: var(--font-mono); font-size: 0.82rem;
-  color: var(--text); outline: none;
-  transition: border-color 0.2s;
-}
-
-.api-url-input:focus { border-color: var(--gold); }
-.api-url-input::placeholder { color: var(--muted); }
-
-.fetch-btn {
-  background: linear-gradient(135deg, var(--gold), #d4891a);
-  border: none; border-radius: 7px;
-  padding: 8px 18px; font-family: var(--font-display);
-  font-size: 0.8rem; letter-spacing: 1.5px; text-transform: uppercase;
-  color: #000; font-weight: 700; cursor: pointer;
-  transition: opacity 0.2s, transform 0.15s; flex-shrink: 0;
-}
-
-.fetch-btn:hover { opacity: 0.88; transform: translateY(-1px); }
-.fetch-btn:active { transform: scale(0.97); }
-.fetch-btn:disabled { opacity: 0.4; cursor: not-allowed; }
-
-.auto-badge {
-  font-family: var(--font-mono); font-size: 0.62rem;
-  padding: 3px 8px; border-radius: 4px;
-  background: rgba(0,196,154,0.1); color: var(--teal);
-  border: 1px solid rgba(0,196,154,0.2);
-}
-
-/* No match box */
-.no-match-box {
-  background: var(--bg2); border: 1px solid var(--border);
-  border-radius: 16px; padding: 2rem;
-  text-align: center; margin-bottom: 1rem;
-}
-
-.no-match-icon { font-size: 2.5rem; margin-bottom: 0.75rem; }
-.no-match-title {
-  font-family: var(--font-display); font-size: 1.2rem;
-  letter-spacing: 2px; color: var(--muted2); margin-bottom: 0.5rem;
-}
-.no-match-sub { font-size: 0.82rem; color: var(--muted); font-style: italic; }
-
-/* Live match card */
-.live-match-card {
-  background: var(--bg2); border: 1px solid rgba(214,62,74,0.3);
-  border-radius: 18px; overflow: hidden;
-  margin-bottom: 1rem; position: relative;
-}
-
-.live-match-card::before {
-  content: ''; position: absolute;
-  top: 0; left: 0; right: 0; height: 3px;
-  background: linear-gradient(90deg, var(--red), var(--gold), var(--red));
-  animation: live-bar 2.5s ease-in-out infinite;
-}
-
-@keyframes live-bar {
-  0%,100% { opacity: 1; }
-  50% { opacity: 0.4; }
-}
-
-.lmc-header {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 1rem 1.4rem; border-bottom: 1px solid var(--border);
-  flex-wrap: wrap; gap: 8px;
-}
-
-.lmc-title {
-  font-family: var(--font-display); font-size: 1rem;
-  letter-spacing: 1.5px; color: var(--text);
-  flex: 1; min-width: 0;
-}
-
-.live-pill {
-  display: flex; align-items: center; gap: 5px;
-  background: rgba(214,62,74,0.15); border: 1px solid rgba(214,62,74,0.35);
-  padding: 4px 10px; border-radius: 20px;
-  font-family: var(--font-mono); font-size: 0.65rem;
-  color: var(--red); text-transform: uppercase; letter-spacing: 1px;
-  font-weight: 600; flex-shrink: 0;
-}
-
-.live-red-dot {
-  width: 6px; height: 6px; border-radius: 50%;
-  background: var(--red); animation: pulse-anim 1s ease-in-out infinite;
-}
-
-.lmc-score-area {
-  padding: 1.2rem 1.4rem; border-bottom: 1px solid var(--border);
-}
-
-.lmc-score-main {
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 5vw, 3rem);
-  letter-spacing: 2px; color: var(--text); line-height: 1;
-  margin-bottom: 6px;
-}
-
-.lmc-crr {
-  font-family: var(--font-mono); font-size: 0.78rem;
-  color: var(--teal); background: rgba(0,196,154,0.1);
-  border: 1px solid rgba(0,196,154,0.2);
-  padding: 3px 10px; border-radius: 5px;
-  display: inline-block; margin-bottom: 4px;
-}
-
-.lmc-status {
-  font-style: italic; font-size: 0.82rem;
-  color: var(--gold); margin-top: 4px;
-}
-
-/* Batters/Bowlers grid */
-.lmc-players {
-  display: grid; grid-template-columns: 1fr 1fr;
-  border-top: 1px solid var(--border);
-}
-
-.lmc-batting {
-  padding: 1rem 1.4rem;
-  border-right: 1px solid var(--border);
-}
-
-.lmc-bowling { padding: 1rem 1.4rem; }
-
-.lmc-section-lbl {
-  font-family: var(--font-mono); font-size: 0.6rem;
-  text-transform: uppercase; letter-spacing: 2px;
-  color: var(--muted); margin-bottom: 8px;
-}
-
-.player-stat-row {
-  display: flex; align-items: center;
-  justify-content: space-between;
-  padding: 4px 0; border-bottom: 1px solid var(--border);
-  font-size: 0.82rem;
-}
-
-.player-stat-row:last-child { border-bottom: none; }
-
-.ps-name { color: var(--text); flex: 1; }
-.ps-runs {
-  font-family: var(--font-mono); font-size: 0.8rem;
-  color: var(--gold); font-weight: 600;
-  text-align: right; min-width: 60px;
-}
-
-.ps-eco {
-  font-family: var(--font-mono); font-size: 0.78rem;
-  color: var(--teal); text-align: right; min-width: 80px;
-}
-
-/* Refresh info bar */
-.lmc-footer {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0.65rem 1.4rem;
-  background: var(--bg3); border-top: 1px solid var(--border);
-  font-family: var(--font-mono); font-size: 0.65rem;
-  color: var(--muted);
-}
-
-.refresh-countdown { color: var(--teal); }
-
-/* Error box */
-.api-error-box {
-  background: rgba(214,62,74,0.07); border: 1px solid rgba(214,62,74,0.2);
-  border-radius: 12px; padding: 1rem 1.2rem;
-  display: flex; align-items: center; gap: 10px;
-  font-size: 0.82rem; color: var(--muted2); margin-bottom: 1rem;
-}
-
-/* How to use guide */
-.howto-card {
-  background: var(--bg2); border: 1px solid var(--border);
-  border-radius: 14px; overflow: hidden; margin-bottom: 1rem;
-}
-
-.howto-hdr {
-  padding: 0.8rem 1.2rem; border-bottom: 1px solid var(--border);
-  background: linear-gradient(135deg, rgba(0,196,154,0.08), transparent);
-  display: flex; align-items: center; justify-content: space-between;
-}
-
-.howto-step {
-  display: flex; align-items: flex-start; gap: 10px;
-  padding: 0.75rem 1.2rem; border-bottom: 1px solid var(--border);
-  font-size: 0.82rem;
-}
-
-.howto-step:last-child { border-bottom: none; }
-
-.step-num {
-  width: 22px; height: 22px; border-radius: 50%;
-  background: var(--gold); color: #000;
-  font-family: var(--font-display); font-size: 0.75rem; font-weight: 700;
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0; margin-top: 1px;
-}
-
-.step-text { flex: 1; line-height: 1.5; color: var(--muted2); }
-.step-text strong { color: var(--text); }
-.step-text code {
-  font-family: var(--font-mono); font-size: 0.75rem;
-  background: var(--bg3); padding: 1px 5px; border-radius: 3px;
-  color: var(--teal);
-}
-
-/* Loading spinner */
-.spin {
-  display: inline-block;
-  animation: spin 1s linear infinite;
-}
-@keyframes spin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
-
 /* Mobile nav drawer */
 .mobile-nav {
   display: none;
@@ -1121,10 +1264,10 @@ footer {
 
 <!-- MOBILE NAV DRAWER -->
 <nav class="mobile-nav" id="mobile-nav">
-  <a href="#live" onclick="closeNav()">Live Score</a>
   <a href="#schedule" onclick="closeNav()">Schedule</a>
   <a href="#teams" onclick="closeNav()">Teams</a>
   <a href="#predictions" onclick="closeNav()">Predictions</a>
+  <a href="#fantasy" onclick="closeNav()">Fantasy Tips</a>
   <a href="#auction" onclick="closeNav()">Auction</a>
   <a href="#news" onclick="closeNav()">News</a>
 </nav>
@@ -1141,10 +1284,10 @@ footer {
     </a>
 
     <ul class="nav-links">
-      <li><a href="#live">Live Score</a></li>
       <li><a href="#schedule" class="active">Schedule</a></li>
       <li><a href="#teams">Teams</a></li>
       <li><a href="#predictions">Predictions</a></li>
+      <li><a href="#fantasy">Fantasy</a></li>
       <li><a href="#auction">Auction</a></li>
       <li><a href="#news">News</a></li>
     </ul>
@@ -1210,9 +1353,52 @@ footer {
   </div>
 </div>
 
-<!-- LEGAL DISCLAIMER -->
-<div style="background:rgba(214,62,74,0.07);border-bottom:1px solid rgba(214,62,74,0.15);padding:6px 0;text-align:center;font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:#8896aa;letter-spacing:0.5px">
-  ⚖️ TightScene.in provides cricket analysis &amp; predictions for entertainment only · No real-money gaming · Compliant with Indian law
+<main>
+
+<!-- LIVE SCORE WIDGET -->
+<div class="live-score-section">
+  <div class="container">
+    <div class="live-score-banner" id="live-score-banner">
+      <div class="live-score-inner">
+        <div class="ls-status-pill preseason" id="ls-status-pill">
+          <div class="ls-dot"></div>
+          <span id="ls-status-text">Pre-Season</span>
+        </div>
+        <div class="ls-divider"></div>
+        <div class="ls-match-wrap" id="ls-match-wrap">
+          <div class="ls-team">
+            <div class="ls-team-abbr" id="ls-team-a-abbr" style="color:var(--red)">RCB</div>
+            <div class="ls-team-score" id="ls-team-a-score">—</div>
+            <div class="ls-team-overs" id="ls-team-a-overs">—</div>
+          </div>
+          <div class="ls-vs">VS</div>
+          <div class="ls-team">
+            <div class="ls-team-abbr" id="ls-team-b-abbr" style="color:var(--gold)">SRH</div>
+            <div class="ls-team-score" id="ls-team-b-score">—</div>
+            <div class="ls-team-overs" id="ls-team-b-overs">—</div>
+          </div>
+          <div class="ls-divider"></div>
+          <div class="ls-info">
+            <div class="ls-match-name" id="ls-match-name">Opening Match · M1 of 84</div>
+            <div class="ls-match-detail" id="ls-match-detail">M. Chinnaswamy Stadium, Bengaluru · Mar 28 · 7:30 PM IST</div>
+          </div>
+        </div>
+        <div class="ls-cta">
+          <div class="ls-next-chip" id="ls-next-chip">Starts Mar 28</div>
+          <button class="ls-retry-btn" id="ls-retry-btn" onclick="liveScoreRetry()" title="Refresh scores">
+            <svg id="ls-retry-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
+            </svg>
+            Refresh
+          </button>
+        </div>
+      </div>
+      <div class="ls-error-bar" id="ls-error-bar">
+        <span class="ls-error-text" id="ls-error-text">⚠ Could not fetch live scores — season starts March 28</span>
+        <span class="ls-retry-count" id="ls-retry-count">Auto-retry in <span id="ls-retry-timer">30</span>s</span>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- HERO SECTION -->
@@ -1281,50 +1467,6 @@ footer {
       </div>
     </div>
   </div>
-</section>
-
-<!-- ===== LIVE SCORE SECTION — FULLY AUTOMATIC ===== -->
-<section class="live-section" id="live" aria-label="Live match score">
-  <div class="live-outer">
-
-    <!-- STATUS BAR -->
-    <div class="admin-bar">
-      <span class="admin-bar-title">🔴 Live Score</span>
-      <div class="auto-badge" id="auto-status" style="padding:5px 12px;font-size:0.72rem">
-        <span class="spin" id="auto-spin">⟳</span> Checking for live matches...
-      </div>
-      <span style="font-family:var(--font-mono);font-size:0.65rem;color:var(--muted)" id="last-check-lbl">Checking now...</span>
-      <button class="fetch-btn" id="refresh-btn" onclick="autoFetchAll()" title="Check for live IPL matches now">↺ REFRESH</button>
-    </div>
-
-    <!-- LIVE SCORE DISPLAY AREA -->
-    <div id="live-display">
-
-      <!-- DEFAULT: checking / no match state -->
-      <div class="no-match-box" id="no-match-box">
-        <div class="no-match-icon" id="no-match-icon">⏳</div>
-        <div class="no-match-title" id="no-match-title">Checking for Live Matches...</div>
-        <div class="no-match-sub" id="no-match-sub">
-          IPL 2026 starts <strong style="color:var(--gold)">March 28</strong> · RCB vs SRH · 7:30 PM IST<br>
-          Scores will appear here automatically when a match goes live
-        </div>
-      </div>
-
-      <!-- ERROR BOX (hidden) -->
-      <div class="api-error-box" id="api-error-box" style="display:none">
-        <span style="font-size:1.2rem">⚠️</span>
-        <div>
-          <div id="api-error-msg">Could not fetch live scores.</div>
-          <div style="font-size:0.72rem;margin-top:3px;color:var(--muted)">Will retry automatically in 30 seconds.</div>
-        </div>
-      </div>
-
-      <!-- LIVE MATCHES CONTAINER — fills dynamically -->
-      <div id="live-cards-container"></div>
-
-    </div><!-- end live-display -->
-
-  </div><!-- end live-outer -->
 </section>
 
 <!-- MAIN CONTENT GRID -->
@@ -1679,6 +1821,148 @@ footer {
         </div>
       </div>
 
+      <!-- PREDICTIONS / TIGHT FACTOR -->
+      <div id="predictions" class="predictions-section">
+        <div class="sec-head">
+          <h2 class="sec-title">Match Predictions</h2>
+          <span class="sec-meta">AI-powered · Tight Factor™</span>
+        </div>
+
+        <!-- Match 1: RCB vs SRH -->
+        <div class="tight-factor-card">
+          <div class="tf-header">
+            <div class="tf-match-label">🏏 RCB vs SRH</div>
+            <div class="tf-date-badge">Mar 28 · 7:30 PM · M1</div>
+          </div>
+          <div class="tf-body">
+            <div class="tf-meter-wrap">
+              <div class="tf-meter-label">
+                <span class="tf-label-text">⚡ Tight Factor™ — Match Closeness Rating</span>
+                <span class="tf-score-num" style="color:var(--red)">8.4</span>
+              </div>
+              <div class="tf-track"><div class="tf-fill tf-fill-hi" style="width:84%"></div></div>
+            </div>
+            <div class="tf-stats-row">
+              <div class="tf-stat">
+                <div class="tf-stat-val" style="color:var(--gold)">RCB</div>
+                <div class="tf-stat-lbl">Predicted Winner</div>
+              </div>
+              <div class="tf-stat">
+                <div class="tf-stat-val" style="color:var(--text)">178–184</div>
+                <div class="tf-stat-lbl">Score Range</div>
+              </div>
+              <div class="tf-stat">
+                <div class="tf-stat-val" style="color:var(--teal)">62%</div>
+                <div class="tf-stat-lbl">Home Advantage</div>
+              </div>
+            </div>
+            <div class="tf-battles">
+              <div class="tf-battles-title">🔥 Key Battles to Watch</div>
+              <div class="tf-battle-row">
+                <span class="tf-bat" style="color:var(--red)">Virat Kohli</span>
+                <span class="tf-vs-mini">vs</span>
+                <span class="tf-bat" style="color:var(--gold)">Pat Cummins</span>
+                <span class="tf-battle-meta">BAT vs BOWL · High Impact</span>
+              </div>
+              <div class="tf-battle-row">
+                <span class="tf-bat" style="color:var(--gold)">Ishan Kishan</span>
+                <span class="tf-vs-mini">vs</span>
+                <span class="tf-bat" style="color:var(--red)">Mohammed Siraj</span>
+                <span class="tf-battle-meta">WK-BAT vs BOWL · Crucial</span>
+              </div>
+              <div class="tf-battle-row">
+                <span class="tf-bat" style="color:var(--red)">Glenn Maxwell</span>
+                <span class="tf-vs-mini">vs</span>
+                <span class="tf-bat" style="color:var(--gold)">Harshal Patel</span>
+                <span class="tf-battle-meta">AR vs BOWL · Death overs</span>
+              </div>
+            </div>
+            <div class="tf-prediction-bar">
+              <div class="tf-pred-team" id="rcbbar" style="width:62%;background:rgba(214,62,74,0.7);color:#fff">RCB 62%</div>
+              <div class="tf-pred-team" id="srhbar" style="width:38%;background:rgba(249,115,22,0.6);color:#fff">SRH 38%</div>
+            </div>
+            <div class="tf-pred-label">
+              <span>Royal Challengers Bengaluru</span>
+              <span>Sunrisers Hyderabad</span>
+            </div>
+            <div class="tf-vote-wrap">
+              <div class="tf-vote-title">🗳 Who do YOU think wins?</div>
+              <div class="tf-vote-btns">
+                <button class="tf-vote-btn" id="vote-rcb-srh-a" onclick="castVote('rcb-srh','a',this)">🔴 RCB</button>
+                <button class="tf-vote-btn" id="vote-rcb-srh-b" onclick="castVote('rcb-srh','b',this)">🟠 SRH</button>
+              </div>
+              <div class="tf-vote-result" id="vote-rcb-srh-result"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Match 2: MI vs KKR -->
+        <div class="tight-factor-card">
+          <div class="tf-header">
+            <div class="tf-match-label">🏏 MI vs KKR</div>
+            <div class="tf-date-badge">Mar 29 · 7:30 PM · M2</div>
+          </div>
+          <div class="tf-body">
+            <div class="tf-meter-wrap">
+              <div class="tf-meter-label">
+                <span class="tf-label-text">⚡ Tight Factor™</span>
+                <span class="tf-score-num" style="color:var(--gold)">7.1</span>
+              </div>
+              <div class="tf-track"><div class="tf-fill tf-fill-mid" style="width:71%"></div></div>
+            </div>
+            <div class="tf-stats-row">
+              <div class="tf-stat">
+                <div class="tf-stat-val" style="color:var(--blue)">MI</div>
+                <div class="tf-stat-lbl">Predicted Winner</div>
+              </div>
+              <div class="tf-stat">
+                <div class="tf-stat-val" style="color:var(--text)">172–180</div>
+                <div class="tf-stat-lbl">Score Range</div>
+              </div>
+              <div class="tf-stat">
+                <div class="tf-stat-val" style="color:var(--teal)">58%</div>
+                <div class="tf-stat-lbl">Home Advantage</div>
+              </div>
+            </div>
+            <div class="tf-battles">
+              <div class="tf-battles-title">🔥 Key Battles</div>
+              <div class="tf-battle-row">
+                <span class="tf-bat" style="color:var(--blue)">Hardik Pandya</span>
+                <span class="tf-vs-mini">vs</span>
+                <span class="tf-bat" style="color:var(--purple)">Varun Chakaravarthy</span>
+                <span class="tf-battle-meta">AR vs BOWL · Captain duel</span>
+              </div>
+              <div class="tf-battle-row">
+                <span class="tf-bat" style="color:var(--purple)">Cameron Green</span>
+                <span class="tf-vs-mini">vs</span>
+                <span class="tf-bat" style="color:var(--blue)">Jasprit Bumrah</span>
+                <span class="tf-battle-meta">BAT vs BOWL · ₹25.2 Cr test</span>
+              </div>
+            </div>
+            <div class="tf-prediction-bar">
+              <div class="tf-pred-team" style="width:56%;background:rgba(59,130,246,0.7);color:#fff">MI 56%</div>
+              <div class="tf-pred-team" style="width:44%;background:rgba(124,58,237,0.6);color:#fff">KKR 44%</div>
+            </div>
+            <div class="tf-pred-label">
+              <span>Mumbai Indians</span>
+              <span>Kolkata Knight Riders</span>
+            </div>
+            <div class="tf-vote-wrap">
+              <div class="tf-vote-title">🗳 Your Prediction</div>
+              <div class="tf-vote-btns">
+                <button class="tf-vote-btn" id="vote-mi-kkr-a" onclick="castVote('mi-kkr','a',this)">🔵 MI</button>
+                <button class="tf-vote-btn" id="vote-mi-kkr-b" onclick="castVote('mi-kkr','b',this)">🟣 KKR</button>
+              </div>
+              <div class="tf-vote-result" id="vote-mi-kkr-result"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="source-note">
+          ⚡ Tight Factor™ is a proprietary closeness rating (1–10) based on head-to-head history, venue stats, current form & squad depth. Predictions are for entertainment only.
+        </div>
+      </div>
+
       <!-- AUCTION HIGHLIGHTS -->
       <div id="auction" style="margin-top:2.5rem">
         <div class="sec-head">
@@ -1752,24 +2036,23 @@ footer {
     <div>
 
       <!-- FANTASY TIPS -->
-      <div id="predictions">
+      <div id="fantasy">
         <div class="sec-head">
-          <h2 class="sec-title">Match Predictions</h2>
-          <span class="sec-meta">Best XI Picks · Pre-Season</span>
+          <h2 class="sec-title">Fantasy Tips</h2>
+          <span class="sec-meta">Dream11 · Pre-Season</span>
         </div>
 
-        <!-- MATCH PREDICTION CARD -->
         <div class="fantasy-card">
           <div class="fantasy-hdr">
-            <div class="fantasy-title">🏏 Our Best XI — Opener</div>
-            <div class="fantasy-sub">RCB vs SRH · Mar 28 · Chinnaswamy · For entertainment only</div>
+            <div class="fantasy-title">🎮 Top Picks — Opener</div>
+            <div class="fantasy-sub">RCB vs SRH · Mar 28 · Chinnaswamy</div>
           </div>
 
           <div class="player-row">
-            <div class="player-avatar" style="background:rgba(239,68,68,0.12);color:#ef4444">VK</div>
+            <div class="player-avatar" style="background:rgba(239,68,68,0.12);color:#ef4444">VP</div>
             <div class="player-info">
-              <div class="player-name">Virat Kohli <span class="player-cap-badge cap-c">KEY</span></div>
-              <div class="player-meta">BAT · RCB · Home ground specialist · Avg 52+ at Chinnaswamy</div>
+              <div class="player-name">Virat Kohli <span class="player-cap-badge cap-c">C</span></div>
+              <div class="player-meta">BAT · RCB · 2025 champion · Chinnaswamy specialist</div>
             </div>
             <div class="confidence-wrap">
               <div class="conf-bar-bg"><div class="conf-bar conf-hi" style="width:94%"></div></div>
@@ -1780,8 +2063,8 @@ footer {
           <div class="player-row">
             <div class="player-avatar" style="background:rgba(249,115,22,0.12);color:#f97316">IK</div>
             <div class="player-info">
-              <div class="player-name">Ishan Kishan <span class="player-cap-badge cap-vc">WATCH</span></div>
-              <div class="player-meta">WK-BAT · SRH interim captain · T20 WC India top scorer</div>
+              <div class="player-name">Ishan Kishan <span class="player-cap-badge cap-vc">VC</span></div>
+              <div class="player-meta">WK-BAT · SRH captain · T20 WC top scorer for India</div>
             </div>
             <div class="confidence-wrap">
               <div class="conf-bar-bg"><div class="conf-bar conf-hi" style="width:88%"></div></div>
@@ -1793,7 +2076,7 @@ footer {
             <div class="player-avatar" style="background:rgba(239,68,68,0.1);color:#ef4444">RP</div>
             <div class="player-info">
               <div class="player-name">Rajat Patidar</div>
-              <div class="player-meta">BAT · RCB captain · Led team to 2025 IPL title</div>
+              <div class="player-meta">BAT · RCB captain · Led team to 2025 title</div>
             </div>
             <div class="confidence-wrap">
               <div class="conf-bar-bg"><div class="conf-bar conf-hi" style="width:82%"></div></div>
@@ -1802,34 +2085,34 @@ footer {
           </div>
 
           <div class="player-row">
-            <div class="player-avatar" style="background:rgba(249,115,22,0.1);color:#f97316">TH</div>
-            <div class="player-info">
-              <div class="player-name">Travis Head</div>
-              <div class="player-meta">BAT · SRH · Most explosive opener in T20 cricket</div>
-            </div>
-            <div class="confidence-wrap">
-              <div class="conf-bar-bg"><div class="conf-bar conf-hi" style="width:80%"></div></div>
-              <div class="conf-pct">80%</div>
-            </div>
-          </div>
-
-          <div class="player-row">
-            <div class="player-avatar" style="background:rgba(239,68,68,0.1);color:#ef4444">MS</div>
-            <div class="player-info">
-              <div class="player-name">Mohammed Siraj</div>
-              <div class="player-meta">BOWL · RCB · Lethal at Chinnaswamy in evening dew</div>
-            </div>
-            <div class="confidence-wrap">
-              <div class="conf-bar-bg"><div class="conf-bar conf-mid" style="width:77%"></div></div>
-              <div class="conf-pct">77%</div>
-            </div>
-          </div>
-
-          <div class="player-row">
             <div class="player-avatar" style="background:rgba(249,115,22,0.1);color:#f97316">PC</div>
             <div class="player-info">
               <div class="player-name">Pat Cummins</div>
-              <div class="player-meta">BOWL · SRH · World class death bowler + lower order bat</div>
+              <div class="player-meta">BOWL · SRH · ₹20.5 Cr · 3rd season as captain</div>
+            </div>
+            <div class="confidence-wrap">
+              <div class="conf-bar-bg"><div class="conf-bar conf-mid" style="width:70%"></div></div>
+              <div class="conf-pct">70%</div>
+            </div>
+          </div>
+
+          <div class="player-row">
+            <div class="player-avatar" style="background:rgba(239,68,68,0.1);color:#ef4444">MN</div>
+            <div class="player-info">
+              <div class="player-name">Mohammed Siraj</div>
+              <div class="player-meta">BOWL · RCB · Lethal at Chinnaswamy</div>
+            </div>
+            <div class="confidence-wrap">
+              <div class="conf-bar-bg"><div class="conf-bar conf-mid" style="width:75%"></div></div>
+              <div class="conf-pct">75%</div>
+            </div>
+          </div>
+
+          <div class="player-row">
+            <div class="player-avatar" style="background:rgba(249,115,22,0.1);color:#f97316">VS</div>
+            <div class="player-info">
+              <div class="player-name">Vaibhav Suryavanshi</div>
+              <div class="player-meta">BAT · RR · Young gun targeting Gayle's record</div>
             </div>
             <div class="confidence-wrap">
               <div class="conf-bar-bg"><div class="conf-bar conf-mid" style="width:72%"></div></div>
@@ -1838,22 +2121,10 @@ footer {
           </div>
 
           <div class="player-row">
-            <div class="player-avatar" style="background:rgba(239,68,68,0.1);color:#ef4444">GM</div>
+            <div class="player-avatar" style="background:rgba(239,68,68,0.1);color:#ef4444">GR</div>
             <div class="player-info">
               <div class="player-name">Glenn Maxwell</div>
-              <div class="player-meta">AR · RCB · Explosive middle-order, handy off-spin</div>
-            </div>
-            <div class="confidence-wrap">
-              <div class="conf-bar-bg"><div class="conf-bar conf-mid" style="width:68%"></div></div>
-              <div class="conf-pct">68%</div>
-            </div>
-          </div>
-
-          <div class="player-row">
-            <div class="player-avatar" style="background:rgba(249,115,22,0.1);color:#f97316">BK</div>
-            <div class="player-info">
-              <div class="player-name">Bhuvneshwar Kumar</div>
-              <div class="player-meta">BOWL · SRH · Swing king, top of the powerplay weapon</div>
+              <div class="player-meta">AR · RCB · Big-match player, electric striker</div>
             </div>
             <div class="confidence-wrap">
               <div class="conf-bar-bg"><div class="conf-bar conf-lo" style="width:65%"></div></div>
@@ -1863,69 +2134,8 @@ footer {
         </div>
 
         <div class="source-note" style="font-size:0.62rem">
-          ℹ️ All predictions are for <strong>entertainment and analysis purposes only</strong>. TightScene.in does not promote, endorse or facilitate any real-money gaming or betting of any kind. Content complies with Indian law.
+          ⚠️ Fantasy tips are predictions only. Always do your own research before submitting teams on Dream11 / My11Circle.
         </div>
-
-        <!-- MATCH PREDICTION VERDICT -->
-        <div class="fantasy-card" style="margin-top:1rem">
-          <div class="fantasy-hdr">
-            <div class="fantasy-title">🎯 Match 1 Verdict — Our Prediction</div>
-            <div class="fantasy-sub">RCB vs SRH · Mar 28 · Chinnaswamy</div>
-          </div>
-
-          <div style="padding:1rem 1.2rem;display:grid;grid-template-columns:1fr 1fr;gap:1rem">
-            <div style="background:var(--bg3);border-radius:10px;padding:0.9rem;border:1px solid var(--border)">
-              <div style="font-family:var(--font-mono);font-size:0.62rem;color:var(--muted);margin-bottom:5px">PREDICTED WINNER</div>
-              <div style="font-family:var(--font-display);font-size:1.6rem;color:#ef4444;letter-spacing:2px">RCB</div>
-              <div style="font-size:0.75rem;color:var(--muted2);margin-top:3px;font-style:italic">Home ground advantage + defending champions</div>
-            </div>
-            <div style="background:var(--bg3);border-radius:10px;padding:0.9rem;border:1px solid var(--border)">
-              <div style="font-family:var(--font-mono);font-size:0.62rem;color:var(--muted);margin-bottom:5px">PREDICTED SCORE</div>
-              <div style="font-family:var(--font-display);font-size:1.4rem;color:var(--gold);letter-spacing:1px">185–195</div>
-              <div style="font-size:0.75rem;color:var(--muted2);margin-top:3px;font-style:italic">Small boundaries at Chinnaswamy</div>
-            </div>
-            <div style="background:var(--bg3);border-radius:10px;padding:0.9rem;border:1px solid var(--border)">
-              <div style="font-family:var(--font-mono);font-size:0.62rem;color:var(--muted);margin-bottom:5px">KEY BATTLE</div>
-              <div style="font-size:0.85rem;font-weight:500">Kohli vs Cummins</div>
-              <div style="font-size:0.75rem;color:var(--muted2);margin-top:3px;font-style:italic">World class batter vs world class bowler</div>
-            </div>
-            <div style="background:var(--bg3);border-radius:10px;padding:0.9rem;border:1px solid var(--border)">
-              <div style="font-family:var(--font-mono);font-size:0.62rem;color:var(--muted);margin-bottom:5px">TIGHT FACTOR</div>
-              <div style="font-family:var(--font-display);font-size:1.6rem;color:var(--teal);letter-spacing:1px">8.5/10</div>
-              <div style="font-size:0.75rem;color:var(--muted2);margin-top:3px;font-style:italic">Expect last-over drama 🔥</div>
-            </div>
-          </div>
-
-          <div style="padding:0.8rem 1.2rem;border-top:1px solid var(--border);font-size:0.8rem;color:var(--muted2);font-style:italic">
-            💡 <strong style="color:var(--text)">Why RCB wins:</strong> Home crowd, Kohli's Chinnaswamy record, defending champion momentum, and SRH missing Pat Cummins (injury doubt). Expect a close finish either way.
-          </div>
-        </div>
-
-        <!-- PITCH REPORT -->
-        <div class="fantasy-card" style="margin-top:1rem">
-          <div class="fantasy-hdr">
-            <div class="fantasy-title">🏟️ Pitch & Weather Report</div>
-            <div class="fantasy-sub">Chinnaswamy Stadium · Bengaluru · Mar 28</div>
-          </div>
-          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;border-top:1px solid var(--border)">
-            <div style="padding:0.9rem 1.2rem;border-right:1px solid var(--border)">
-              <div style="font-family:var(--font-mono);font-size:0.6rem;color:var(--muted);margin-bottom:4px;text-transform:uppercase;letter-spacing:1px">Pitch Type</div>
-              <div style="font-weight:500;font-size:0.85rem">Batting-friendly</div>
-              <div style="font-size:0.72rem;color:var(--muted);margin-top:2px">Good carry, true bounce</div>
-            </div>
-            <div style="padding:0.9rem 1.2rem;border-right:1px solid var(--border)">
-              <div style="font-family:var(--font-mono);font-size:0.6rem;color:var(--muted);margin-bottom:4px;text-transform:uppercase;letter-spacing:1px">Avg 1st Innings</div>
-              <div style="font-family:var(--font-display);font-size:1.3rem;color:var(--gold)">185+</div>
-              <div style="font-size:0.72rem;color:var(--muted);margin-top:2px">Small ground, quick outfield</div>
-            </div>
-            <div style="padding:0.9rem 1.2rem">
-              <div style="font-family:var(--font-mono);font-size:0.6rem;color:var(--muted);margin-bottom:4px;text-transform:uppercase;letter-spacing:1px">Weather</div>
-              <div style="font-weight:500;font-size:0.85rem">Clear ☀️</div>
-              <div style="font-size:0.72rem;color:var(--muted);margin-top:2px">27°C · Dew likely later</div>
-            </div>
-          </div>
-        </div>
-
       </div>
 
       <!-- POINTS TABLE (pre-season) -->
@@ -2122,7 +2332,7 @@ footer {
         <div class="logo-mark" style="width:36px;height:36px;font-size:17px">🏏</div>
         <span class="logo-name" style="font-size:1.2rem">TIGHTSCENE</span>
       </a>
-      <p class="footer-desc">India's most dramatic cricket hub. IPL 2026 live scores, schedule, match predictions &amp; previews — where every ball counts.</p>
+      <p class="footer-desc">India's most dramatic cricket hub. IPL 2026 live scores, schedule, fantasy tips &amp; match previews — where every ball counts.</p>
     </div>
 
     <div>
@@ -2131,7 +2341,7 @@ footer {
         <li><a href="#schedule">Full Schedule</a></li>
         <li><a href="#teams">Teams &amp; Captains</a></li>
         <li><a href="#auction">Auction Results</a></li>
-        <li><a href="#predictions">Match Predictions</a></li>
+        <li><a href="#fantasy">Fantasy Tips</a></li>
         <li><a href="#news">Latest News</a></li>
       </ul>
     </div>
@@ -2149,9 +2359,9 @@ footer {
     <div>
       <div class="footer-col-title">About</div>
       <ul class="footer-links">
-        <li><a href="#">About TightScene</a></li>
-        <li><a href="#">Privacy Policy</a></li>
-        <li><a href="#">Contact</a></li>
+        <li><a href="#" onclick="openModal('about-modal');return false;">About TightScene</a></li>
+        <li><a href="#" onclick="openModal('privacy-modal');return false;">Privacy Policy</a></li>
+        <li><a href="#" onclick="openModal('contact-modal');return false;">Contact</a></li>
         <li><a href="#">Advertise</a></li>
       </ul>
     </div>
@@ -2163,316 +2373,188 @@ footer {
   </div>
 </footer>
 
+<!-- ABOUT MODAL -->
+<div class="modal-overlay" id="about-modal" onclick="handleModalClick(event,'about-modal')">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div class="modal-title">🏏 About TightScene</div>
+      <button class="modal-close" onclick="closeModal('about-modal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <p>TightScene.in is India's most dedicated IPL cricket hub — built for fans who live and breathe every delivery. We obsess over the moments that make cricket so addictive: the penultimate over, the last-ball six, the net run rate drama. <em>Where Every Ball Counts.</em></p>
+
+      <div class="disclaimer-box">
+        ⚠️ TightScene is a fan information platform. We do not promote, facilitate, or encourage any form of betting or gambling. All Fantasy Tips are for entertainment purposes only.
+      </div>
+
+      <h3>What We Cover</h3>
+      <ul>
+        <li>Real-time IPL 2026 live scores & match updates</li>
+        <li>Full schedule — all 84 matches across Phase 1 & 2</li>
+        <li>Fantasy Tips with confidence ratings for Dream11 / My11Circle</li>
+        <li>Tight Factor™ match predictions & analysis</li>
+        <li>Auction highlights, team rosters & captain news</li>
+        <li>Breaking news, injury updates & transfer alerts</li>
+      </ul>
+
+      <h3>Data Sources</h3>
+      <ul>
+        <li>BCCI Official — iplt20.com</li>
+        <li>ESPNcricinfo — espncricinfo.com</li>
+        <li>Wikipedia — IPL 2026 season article</li>
+        <li>Olympics.com — Confirmed captains list</li>
+      </ul>
+
+      <h3>Contact & Feedback</h3>
+      <p>Got a tip, correction, or just want to talk cricket? <a href="#" onclick="closeModal('about-modal');openModal('contact-modal');return false;" style="color:var(--gold)">Send us a message →</a></p>
+    </div>
+  </div>
+</div>
+
+<!-- PRIVACY MODAL -->
+<div class="modal-overlay" id="privacy-modal" onclick="handleModalClick(event,'privacy-modal')">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div class="modal-title">🔐 Privacy Policy</div>
+      <button class="modal-close" onclick="closeModal('privacy-modal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <p style="font-family:var(--font-mono);font-size:0.62rem;color:var(--muted)">Last updated: March 2026</p>
+
+      <div class="disclaimer-box">
+        🚫 No Betting / Gambling: TightScene.in does not promote betting, gambling, or any form of paid fantasy leagues. Fantasy Tips shown on this site are strictly for entertainment and informational purposes. We are not affiliated with Dream11, My11Circle, or any fantasy gaming platform.
+      </div>
+
+      <h3>Information We Collect</h3>
+      <ul>
+        <li>Standard web server logs (IP address, browser type, pages visited)</li>
+        <li>Contact form submissions (name, email, message) — stored securely</li>
+        <li>Anonymous usage analytics via browser-standard signals</li>
+      </ul>
+
+      <h3>What We Do NOT Do</h3>
+      <ul>
+        <li>We do not sell your data to any third party</li>
+        <li>We do not use tracking pixels or invasive ad networks</li>
+        <li>We do not require account creation or store passwords</li>
+        <li>We do not serve personalized advertisements</li>
+      </ul>
+
+      <h3>Cookies</h3>
+      <p>TightScene uses minimal cookies only for basic site functionality (e.g. remembering your vote on predictions). No cross-site tracking cookies are used.</p>
+
+      <h3>Third-Party Links</h3>
+      <p>We link to official sources like iplt20.com, ESPNcricinfo, and JioHotstar. We are not responsible for the privacy practices of external websites.</p>
+
+      <h3>Contact</h3>
+      <p>For privacy-related queries, <a href="#" onclick="closeModal('privacy-modal');openModal('contact-modal');return false;" style="color:var(--gold)">contact us here →</a></p>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT MODAL -->
+<div class="modal-overlay" id="contact-modal" onclick="handleModalClick(event,'contact-modal')">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div class="modal-title">✉️ Contact Us</div>
+      <button class="modal-close" onclick="closeModal('contact-modal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <p>Got a news tip, data correction, partnership query, or just want to talk cricket? We read every message.</p>
+      <form class="contact-form" onsubmit="submitContact(event)">
+        <div class="cf-field">
+          <label class="cf-label">Your Name</label>
+          <input class="cf-input" type="text" placeholder="Virat Kohli" required>
+        </div>
+        <div class="cf-field">
+          <label class="cf-label">Email Address</label>
+          <input class="cf-input" type="email" placeholder="you@example.com" required>
+        </div>
+        <div class="cf-field">
+          <label class="cf-label">Subject</label>
+          <input class="cf-input" type="text" placeholder="News tip / Correction / Partnership">
+        </div>
+        <div class="cf-field">
+          <label class="cf-label">Message</label>
+          <textarea class="cf-textarea" placeholder="Tell us..." required></textarea>
+        </div>
+        <button type="submit" class="cf-submit">Send Message 🏏</button>
+      </form>
+      <div class="cf-success" id="cf-success">
+        ✅ Message sent! We'll get back to you within 24 hours. Thanks for being part of TightScene!
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
-// ============================================================
-// TIGHTSCENE.IN — FULLY AUTOMATIC LIVE SCORE ENGINE
-// Uses cricbuzz-live.vercel.app (by ekamid on GitHub)
-// /v1/matches  → lists ALL live matches with IDs
-// /v1/score/ID → full scorecard for a specific match
-// No API key. No match ID entry. Fully automatic.
-// ============================================================
-
-const MATCHES_API  = 'https://cricbuzz-live.vercel.app/v1/matches';
-const SCORE_API    = 'https://cricbuzz-live.vercel.app/v1/score/';
-
-// IPL keywords to detect IPL matches in the live list
-const IPL_KEYWORDS = ['ipl','indian premier','rcb','mi ','csk','kkr','srh','rr ','pbks','gt ','lsg','dc ','mumbai','chennai','bengaluru','kolkata','hyderabad','rajasthan','punjab','gujarat','lucknow','delhi'];
-
-let autoTimer      = null;
-let countdownVal   = 30;
-let countdownIntvl = null;
-let activeMatchIds = [];
-
-// ——— BOOT ———
-window.addEventListener('load', () => {
-  autoFetchAll();
-});
-
-// ——— MAIN AUTO FETCH ———
-async function autoFetchAll() {
-  setStatus('checking');
-  hideError();
-  clearCards();
-
-  try {
-    // Step 1: Get all live matches
-    const res  = await fetch(MATCHES_API, { cache: 'no-store' });
-    if (!res.ok) throw new Error(`Matches API error: ${res.status}`);
-    const json = await res.json();
-
-    const allMatches = json?.data?.matches || json?.matches || [];
-    if (!Array.isArray(allMatches) || allMatches.length === 0) {
-      showNoMatch('No Live Matches Right Now', 'IPL 2026 starts March 28 · Scores appear here automatically when a match goes live 🏏');
-      scheduleNextCheck(60);
-      return;
-    }
-
-    // Step 2: Filter for IPL matches
-    const iplMatches = allMatches.filter(m => {
-      const title = (m.title || m.name || '').toLowerCase();
-      return IPL_KEYWORDS.some(kw => title.includes(kw));
-    });
-
-    if (iplMatches.length === 0) {
-      // Show all live matches if no IPL specifically found
-      showNoMatch(
-        `${allMatches.length} Live Match${allMatches.length>1?'es':''} — No IPL Yet`,
-        `IPL 2026 starts March 28 · ${allMatches.length} other match${allMatches.length>1?'es are':' is'} live right now`
-      );
-      scheduleNextCheck(60);
-      return;
-    }
-
-    // Step 3: Fetch scorecard for each IPL match
-    activeMatchIds = iplMatches.map(m => m.id || m.matchId || m.match_id).filter(Boolean);
-
-    document.getElementById('no-match-box').style.display = 'none';
-
-    for (const id of activeMatchIds) {
-      await fetchAndRenderCard(id);
-    }
-
-    setStatus('live', iplMatches.length);
-    scheduleNextCheck(15);
-
-  } catch(e) {
-    showError(`Auto-fetch failed: ${e.message}`);
-    setStatus('error');
-    scheduleNextCheck(30);
-  }
-}
-
-// ——— FETCH SINGLE MATCH SCORECARD ———
-async function fetchAndRenderCard(matchId) {
-  try {
-    const res  = await fetch(SCORE_API + matchId, { cache: 'no-store' });
-    if (!res.ok) return;
-    const json = await res.json();
-    const d    = json?.data || json?.livescore || json;
-    if (!d || (!d.title && !d.liveScore && !d.livescore && !d.current)) return;
-    renderCard(matchId, d);
-  } catch(e) {
-    console.warn('Score fetch failed for match', matchId, e.message);
-  }
-}
-
-// ——— RENDER A MATCH CARD ———
-function renderCard(id, d) {
-  const container = document.getElementById('live-cards-container');
-  const existing  = document.getElementById('card-' + id);
-
-  // Normalise field names — API has two formats
-  const title   = d.title    || 'IPL 2026 Live';
-  const score   = d.liveScore || d.current    || d.livescore  || '--';
-  const crr     = d.runRate  || d.runrate     || 'CRR: --';
-  const status  = d.update   || '--';
-
-  const bat1n   = d.batsmanOne  || d.batsman     || d.batterone  || '---';
-  const bat1r   = d.batsmanOneRun || d.batsmanrun  || d.batsmanonerun || '--';
-  const bat1b   = d.batsmanOneBall || d.ballsfaced   || d.batsmanoneball || '(--)';
-
-  const bat2n   = d.batsmanTwo   || d.batsmantwo   || d.battertwo  || '---';
-  const bat2r   = d.batsmanTwoRun || d.batsmantworun || '--';
-  const bat2b   = d.batsmanTwoBall || d.batsmantwoballfaced || d.batsmantwoball || '(--)';
-
-  const bw1n    = d.bowlerOne   || d.bowler     || d.bowlerone  || '---';
-  const bw1w    = d.bowlerOneWickets || d.bowlerwickets  || d.bowleronewickers || '0';
-  const bw1r    = d.bowlerOneRun || d.bowlerruns    || d.bowleronerun  || '0';
-  const bw1o    = d.bowlerOneOver || d.bowlerover    || d.bowleroneover || '0';
-
-  const bw2n    = d.bowlerTwo   || d.bowlertwo  || '---';
-  const bw2w    = d.bowlerTwoWickets || d.bowlertwowickets || d.bowlertwowickers || '0';
-  const bw2r    = d.bowlerTwoRun || d.bowlertworuns    || d.bowlertworun  || '0';
-  const bw2o    = d.bowlerTwoOver || d.bowlertwoover   || '0';
-
-  const now     = new Date();
-  const ist     = new Date(now.getTime() + now.getTimezoneOffset()*60000 + 5.5*3600000);
-  const updTime = ist.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',second:'2-digit'}) + ' IST';
-
-  const html = `
-    <div class="live-match-card" id="card-${id}">
-      <div class="lmc-header">
-        <div class="lmc-title">${escHtml(title)}</div>
-        <div class="live-pill"><div class="live-red-dot"></div>LIVE</div>
-      </div>
-      <div class="lmc-score-area">
-        <div class="lmc-score-main">${escHtml(score)}</div>
-        <div><span class="lmc-crr">${escHtml(crr)}</span></div>
-        <div class="lmc-status">${escHtml(status)}</div>
-      </div>
-      <div class="lmc-players">
-        <div class="lmc-batting">
-          <div class="lmc-section-lbl">🏏 Batting</div>
-          <div class="player-stat-row">
-            <span class="ps-name">${escHtml(bat1n)}</span>
-            <span class="ps-runs">${escHtml(bat1r)} ${escHtml(bat1b)}</span>
-          </div>
-          <div class="player-stat-row">
-            <span class="ps-name">${escHtml(bat2n)}</span>
-            <span class="ps-runs">${escHtml(bat2r)} ${escHtml(bat2b)}</span>
-          </div>
-        </div>
-        <div class="lmc-bowling">
-          <div class="lmc-section-lbl">⚡ Bowling</div>
-          <div class="player-stat-row">
-            <span class="ps-name">${escHtml(bw1n)}</span>
-            <span class="ps-eco">${escHtml(bw1w)}/${escHtml(bw1r)} (${escHtml(bw1o)})</span>
-          </div>
-          <div class="player-stat-row">
-            <span class="ps-name">${escHtml(bw2n)}</span>
-            <span class="ps-eco">${escHtml(bw2w)}/${escHtml(bw2r)} (${escHtml(bw2o)})</span>
-          </div>
-        </div>
-      </div>
-      <div class="lmc-footer">
-        <span>Auto-refresh every 15s · Data: Cricbuzz (unofficial)</span>
-        <span>Updated <span class="refresh-countdown">${updTime}</span></span>
-      </div>
-    </div>`;
-
-  if (existing) {
-    existing.outerHTML = html;
-  } else {
-    container.insertAdjacentHTML('beforeend', html);
-  }
-
-  // Update nav pill to LIVE
-  const pill = document.querySelector('.nav-pill');
-  if (pill) {
-    pill.innerHTML = '<div class="pulse-dot" style="background:var(--red)"></div> LIVE';
-    pill.style.cssText += ';background:rgba(214,62,74,0.15);border-color:rgba(214,62,74,0.35);color:var(--red)';
-  }
-}
-
-// ——— SCHEDULE NEXT AUTO REFRESH ———
-function scheduleNextCheck(seconds) {
-  clearInterval(autoTimer);
-  clearInterval(countdownIntvl);
-  countdownVal = seconds;
-
-  updateCheckLabel();
-
-  countdownIntvl = setInterval(() => {
-    countdownVal--;
-    if (countdownVal < 0) countdownVal = 0;
-    updateCheckLabel();
-  }, 1000);
-
-  autoTimer = setTimeout(() => {
-    clearInterval(countdownIntvl);
-    autoFetchAll();
-  }, seconds * 1000);
-}
-
-function updateCheckLabel() {
-  const el = document.getElementById('last-check-lbl');
-  if (el) el.textContent = `Next refresh in ${countdownVal}s`;
-}
-
-// ——— UI HELPERS ———
-function setStatus(state, count) {
-  const el = document.getElementById('auto-status');
-  const sp = document.getElementById('auto-spin');
-  if (!el) return;
-  if (state === 'checking') {
-    el.textContent = ''; el.appendChild(sp);
-    sp.textContent = '⟳'; sp.className = 'spin';
-    el.appendChild(document.createTextNode(' Checking...'));
-    el.style.cssText = 'background:rgba(232,160,32,0.1);color:var(--gold);border-color:rgba(232,160,32,0.2);padding:5px 12px;font-size:0.72rem';
-  } else if (state === 'live') {
-    el.textContent = `🔴 ${count} IPL Match${count>1?'es':''} LIVE`;
-    el.style.cssText = 'background:rgba(214,62,74,0.15);color:var(--red);border-color:rgba(214,62,74,0.3);padding:5px 12px;font-size:0.72rem';
-  } else if (state === 'error') {
-    el.textContent = '⚠️ Retrying...';
-    el.style.cssText = 'background:rgba(214,62,74,0.08);color:var(--muted2);padding:5px 12px;font-size:0.72rem';
-  } else {
-    el.textContent = '✅ No IPL Live Now';
-    el.style.cssText = 'background:rgba(0,196,154,0.08);color:var(--teal);border-color:rgba(0,196,154,0.2);padding:5px 12px;font-size:0.72rem';
-  }
-}
-
-function showNoMatch(title, sub) {
-  const box = document.getElementById('no-match-box');
-  box.style.display = 'block';
-  document.getElementById('no-match-icon').textContent = '🏏';
-  document.getElementById('no-match-title').textContent = title;
-  document.getElementById('no-match-sub').innerHTML = sub;
-  setStatus('none');
-}
-
-function showError(msg) {
-  const box = document.getElementById('api-error-box');
-  document.getElementById('api-error-msg').textContent = msg;
-  box.style.display = 'flex';
-}
-
-function hideError() {
-  document.getElementById('api-error-box').style.display = 'none';
-}
-
-function clearCards() {
-  document.getElementById('live-cards-container').innerHTML = '';
-}
-
-function escHtml(str) {
-  return String(str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-}
-
 // =============================================
-// LIVE IST CLOCK
+// LIVE CLOCK (IST = UTC + 5:30)
 // =============================================
-function updateClock() {
+function getIST() {
   const now = new Date();
-  const ist = new Date(now.getTime() + now.getTimezoneOffset()*60000 + 5.5*3600000);
-  const h   = String(ist.getHours()).padStart(2,'0');
-  const m   = String(ist.getMinutes()).padStart(2,'0');
-  const s   = String(ist.getSeconds()).padStart(2,'0');
-  const el  = document.getElementById('nav-clock');
+  const utc = now.getTime() + now.getTimezoneOffset() * 60000;
+  return new Date(utc + 5.5 * 3600000);
+}
+
+function updateClock() {
+  const ist = getIST();
+  const h = String(ist.getHours()).padStart(2,'0');
+  const m = String(ist.getMinutes()).padStart(2,'0');
+  const s = String(ist.getSeconds()).padStart(2,'0');
+  const el = document.getElementById('nav-clock');
   if (el) el.textContent = h + ':' + m + ':' + s + ' IST';
 }
+
 setInterval(updateClock, 1000);
 updateClock();
 
 // =============================================
-// COUNTDOWN to Mar 28 2026 7:30 PM IST
+// COUNTDOWN — Mar 28, 2026 7:30 PM IST = 14:00 UTC
 // =============================================
 const TARGET = new Date('2026-03-28T14:00:00Z').getTime();
 
 function pad(n) { return String(Math.max(0,n)).padStart(2,'0'); }
 
 function updateCountdown() {
-  const diff = TARGET - Date.now();
-  const ids  = { d:'cd-d', h:'cd-h', m:'cd-m', s:'cd-s' };
+  const now = Date.now();
+  const diff = TARGET - now;
+
+  const els = {
+    d: document.getElementById('cd-d'),
+    h: document.getElementById('cd-h'),
+    m: document.getElementById('cd-m'),
+    s: document.getElementById('cd-s')
+  };
 
   if (diff <= 0) {
-    Object.values(ids).forEach(id => { const e = document.getElementById(id); if(e) e.textContent='00'; });
-    const lbl = document.querySelector('.cd-label');
-    if (lbl) lbl.textContent = '🔴 IPL 2026 IS LIVE — Scores loading above!';
+    Object.values(els).forEach(el => { if(el) { el.textContent = '00'; } });
+    const pill = document.querySelector('.nav-pill');
+    if (pill) pill.innerHTML = '<div class="pulse-dot" style="background:var(--red)"></div>LIVE NOW';
     return;
   }
 
   const days  = Math.floor(diff / 86400000);
   const hours = Math.floor((diff % 86400000) / 3600000);
-  const mins  = Math.floor((diff % 3600000)  / 60000);
-  const secs  = Math.floor((diff % 60000)    / 1000);
+  const mins  = Math.floor((diff % 3600000) / 60000);
+  const secs  = Math.floor((diff % 60000) / 1000);
 
-  const el_d = document.getElementById('cd-d');
-  const el_h = document.getElementById('cd-h');
-  const el_m = document.getElementById('cd-m');
-  const el_s = document.getElementById('cd-s');
+  if (els.d) els.d.textContent = pad(days);
+  if (els.h) els.h.textContent = pad(hours);
+  if (els.m) els.m.textContent = pad(mins);
 
-  if (el_d) el_d.textContent = pad(days);
-  if (el_h) el_h.textContent = pad(hours);
-  if (el_m) el_m.textContent = pad(mins);
-  if (el_s) {
+  // animate seconds tick
+  if (els.s) {
+    const prev = els.s.textContent;
     const next = pad(secs);
-    if (el_s.textContent !== next) {
-      el_s.classList.add('tick');
-      setTimeout(() => el_s.classList.remove('tick'), 150);
+    if (prev !== next) {
+      els.s.classList.add('tick');
+      setTimeout(() => els.s && els.s.classList.remove('tick'), 150);
     }
-    el_s.textContent = next;
+    els.s.textContent = next;
   }
 }
+
 setInterval(updateCountdown, 1000);
 updateCountdown();
 
@@ -2480,32 +2562,42 @@ updateCountdown();
 // TABS
 // =============================================
 function switchTab(id, btn) {
+  // find container
   const panes = btn.closest('.tab-bar').parentElement.querySelectorAll('.tab-pane');
   const btns  = btn.closest('.tab-bar').querySelectorAll('.tab-btn');
+
   panes.forEach(p => p.classList.remove('active'));
   btns.forEach(b => b.classList.remove('active'));
-  const t = document.getElementById(id);
-  if (t) t.classList.add('active');
+
+  const target = document.getElementById(id);
+  if (target) target.classList.add('active');
   btn.classList.add('active');
 }
 
 // =============================================
 // MOBILE NAV
 // =============================================
-function toggleNav() { document.getElementById('mobile-nav').classList.toggle('open'); }
-function closeNav()  { document.getElementById('mobile-nav').classList.remove('open'); }
+function toggleNav() {
+  document.getElementById('mobile-nav').classList.toggle('open');
+}
 
-document.addEventListener('click', e => {
+function closeNav() {
+  document.getElementById('mobile-nav').classList.remove('open');
+}
+
+// Close mobile nav on outside click
+document.addEventListener('click', function(e) {
   const nav = document.getElementById('mobile-nav');
   const btn = document.getElementById('hamburger-btn');
-  if (nav && btn && !nav.contains(e.target) && !btn.contains(e.target))
+  if (nav && btn && !nav.contains(e.target) && !btn.contains(e.target)) {
     nav.classList.remove('open');
+  }
 });
 
 // =============================================
-// ACTIVE NAV ON SCROLL
+// NAV ACTIVE LINK on scroll
 // =============================================
-const sections = ['live','schedule','teams','predictions','auction','news'];
+const sections = ['schedule','teams','predictions','fantasy','auction','news'];
 
 function setActiveNav() {
   const scrollY = window.scrollY + 100;
@@ -2515,14 +2607,226 @@ function setActiveNav() {
     if (el && el.offsetTop <= scrollY) active = id;
   });
   document.querySelectorAll('.nav-links a').forEach(a => {
-    a.classList.toggle('active', a.getAttribute('href') === '#' + active);
+    const href = a.getAttribute('href');
+    a.classList.toggle('active', href === '#' + active);
   });
 }
+
 window.addEventListener('scroll', setActiveNav, { passive: true });
 setActiveNav();
 
 // =============================================
-// CONFIDENCE BARS
+// LIVE SCORE ENGINE — auto-retry with countdown
+// =============================================
+const SEASON_START = new Date('2026-03-28T14:00:00Z').getTime();
+let lsRetryCountdown = 30;
+let lsRetryInterval = null;
+let lsRetryTimer = null;
+
+// Attempt to fetch live scores from a public cricket API
+// Falls back gracefully with informative pre-season message
+async function fetchLiveScores() {
+  const now = Date.now();
+  const pill = document.getElementById('ls-status-pill');
+  const statusText = document.getElementById('ls-status-text');
+  const nextChip = document.getElementById('ls-next-chip');
+  const errorBar = document.getElementById('ls-error-bar');
+  const errorText = document.getElementById('ls-error-text');
+  const retryBtn = document.getElementById('ls-retry-btn');
+  const retryIcon = document.getElementById('ls-retry-icon');
+
+  // Spinning animation
+  retryBtn && retryBtn.classList.add('spinning');
+
+  try {
+    // Try fetching from cricbuzz unofficial public endpoint
+    // In production replace with your chosen API key provider (cricapi.com etc.)
+    const res = await fetch('https://api.cricapi.com/v1/currentMatches?apikey=YOUR_API_KEY&offset=0', {
+      signal: AbortSignal.timeout(8000)
+    });
+
+    if (!res.ok) throw new Error('API error');
+    const data = await res.json();
+
+    if (data && data.data && data.data.length > 0) {
+      const match = data.data.find(m => m.name && m.name.toLowerCase().includes('ipl')) || data.data[0];
+      updateLiveScoreUI(match, pill, statusText, nextChip, errorBar);
+      startAutoRetry(30);
+    } else {
+      throw new Error('No IPL match data');
+    }
+  } catch (err) {
+    // Graceful pre-season / error handling
+    handleLiveScoreError(now, pill, statusText, nextChip, errorBar, errorText);
+    startAutoRetry(30);
+  } finally {
+    setTimeout(() => retryBtn && retryBtn.classList.remove('spinning'), 600);
+  }
+}
+
+function updateLiveScoreUI(match, pill, statusText, nextChip, errorBar) {
+  errorBar && errorBar.classList.remove('visible');
+  if (match.matchStarted && !match.matchEnded) {
+    pill.className = 'ls-status-pill live';
+    statusText.textContent = 'Live';
+    nextChip && (nextChip.textContent = match.status || 'In Progress');
+    document.getElementById('ls-match-name').textContent = match.name || 'IPL 2026';
+    if (match.score && match.score.length > 0) {
+      document.getElementById('ls-team-a-score').textContent = match.score[0]?.r + '/' + match.score[0]?.w || '—';
+      document.getElementById('ls-team-a-overs').textContent = match.score[0]?.o + ' ov' || '—';
+    }
+    if (match.score && match.score.length > 1) {
+      document.getElementById('ls-team-b-score').textContent = match.score[1]?.r + '/' + match.score[1]?.w || '—';
+      document.getElementById('ls-team-b-overs').textContent = match.score[1]?.o + ' ov' || '—';
+    }
+  }
+}
+
+function handleLiveScoreError(now, pill, statusText, nextChip, errorBar, errorText) {
+  const msToStart = SEASON_START - now;
+  const errorBar2 = document.getElementById('ls-error-bar');
+  const errorText2 = document.getElementById('ls-error-text');
+
+  if (msToStart > 0) {
+    // Pre-season
+    pill.className = 'ls-status-pill preseason';
+    statusText.textContent = 'Pre-Season';
+    nextChip && (nextChip.textContent = 'Starts Mar 28');
+    errorBar2 && errorBar2.classList.add('visible');
+    errorText2 && (errorText2.textContent = '⚠ No live matches — IPL 2026 season starts March 28');
+  } else {
+    // Season active but fetch failed
+    pill.className = 'ls-status-pill upcoming';
+    statusText.textContent = 'Connecting…';
+    nextChip && (nextChip.textContent = 'Retrying…');
+    errorBar2 && errorBar2.classList.add('visible');
+    errorText2 && (errorText2.textContent = '⚠ Could not fetch live scores — will retry automatically');
+  }
+}
+
+function startAutoRetry(seconds) {
+  clearInterval(lsRetryInterval);
+  clearTimeout(lsRetryTimer);
+  lsRetryCountdown = seconds;
+  const timerEl = document.getElementById('ls-retry-timer');
+
+  lsRetryInterval = setInterval(() => {
+    lsRetryCountdown--;
+    if (timerEl) timerEl.textContent = lsRetryCountdown;
+    if (lsRetryCountdown <= 0) {
+      clearInterval(lsRetryInterval);
+      fetchLiveScores();
+    }
+  }, 1000);
+}
+
+function liveScoreRetry() {
+  clearInterval(lsRetryInterval);
+  fetchLiveScores();
+}
+
+// Initial fetch on load
+fetchLiveScores();
+
+// =============================================
+// PREDICTIONS — VOTE SYSTEM
+// =============================================
+const voteStore = JSON.parse(localStorage.getItem('ts_votes') || '{}');
+
+function castVote(matchId, team, btn) {
+  if (voteStore[matchId]) return; // already voted
+
+  voteStore[matchId] = team;
+  try { localStorage.setItem('ts_votes', JSON.stringify(voteStore)); } catch(e) {}
+
+  const btnA = document.getElementById('vote-' + matchId + '-a');
+  const btnB = document.getElementById('vote-' + matchId + '-b');
+  const result = document.getElementById('vote-' + matchId + '-result');
+
+  if (btnA) { btnA.classList.add(team === 'a' ? 'voted voted-a' : 'voted'); btnA.disabled = true; }
+  if (btnB) { btnB.classList.add(team === 'b' ? 'voted voted-b' : 'voted'); btnB.disabled = true; }
+  if (result) {
+    result.textContent = team === 'a'
+      ? '✅ You picked Team A — let\'s see how it plays out!'
+      : '✅ You picked Team B — bold call!';
+    result.classList.add('visible');
+  }
+}
+
+// Restore votes on load
+Object.keys(voteStore).forEach(matchId => {
+  const team = voteStore[matchId];
+  const btnA = document.getElementById('vote-' + matchId + '-a');
+  const btnB = document.getElementById('vote-' + matchId + '-b');
+  const result = document.getElementById('vote-' + matchId + '-result');
+  if (btnA) { btnA.classList.add(team === 'a' ? 'voted voted-a' : 'voted'); btnA.disabled = true; }
+  if (btnB) { btnB.classList.add(team === 'b' ? 'voted voted-b' : 'voted'); btnB.disabled = true; }
+  if (result) {
+    result.textContent = team === 'a' ? '✅ You picked Team A!' : '✅ You picked Team B!';
+    result.classList.add('visible');
+  }
+});
+
+// Animate Tight Factor bars on scroll into view
+const tfObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const fills = entry.target.querySelectorAll('.tf-fill');
+      fills.forEach(f => {
+        const w = f.style.width;
+        f.style.width = '0';
+        setTimeout(() => { f.style.width = w; }, 100);
+      });
+      tfObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.2 });
+
+document.querySelectorAll('.tight-factor-card').forEach(c => tfObserver.observe(c));
+
+// =============================================
+// MODAL SYSTEM
+// =============================================
+function openModal(id) {
+  const modal = document.getElementById(id);
+  if (modal) {
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+function closeModal(id) {
+  const modal = document.getElementById(id);
+  if (modal) {
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+}
+
+function handleModalClick(e, id) {
+  if (e.target === document.getElementById(id)) closeModal(id);
+}
+
+// Close modals on Escape key
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.modal-overlay.open').forEach(m => {
+      m.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  }
+});
+
+// Contact form submit
+function submitContact(e) {
+  e.preventDefault();
+  const form = e.target;
+  form.style.display = 'none';
+  document.getElementById('cf-success').classList.add('visible');
+}
+
+// =============================================
+// CONFIDENCE BARS animate on load
 // =============================================
 window.addEventListener('load', () => {
   document.querySelectorAll('.conf-bar').forEach(bar => {
